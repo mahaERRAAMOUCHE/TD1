@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct
+{
+    int Tab[5][2];
+}tab_tran;
+tab_tran* remplir_tab_trans()
+{
+    tab_tran*T=(tab_tran*)malloc(sizeof(tab_tran));
+    if(!T) exit(0);
+    else
+    {
+    T->Tab[0][0]=1;
+    T->Tab[0][1]=2;
+    T->Tab[1][0]=3;
+    T->Tab[1][1]=2;
+    T->Tab[2][0]=1;
+    T->Tab[2][1]=2;
+    T->Tab[3][0]=4;
+    T->Tab[3][1]=2;
+    T->Tab[4][0]=-1;
+    T->Tab[4][1]=-1;
+    }
+    return((tab_tran*)T);
+}
+int valeur_char(char c)
+{
+    if(c=='1') return((int)1);
+    return((int)0);
+}
+int main()
+{
+    printf("chaine=\t");
+    char TC=getchar();
+    int l=1;
+    tab_tran*T=remplir_tab_trans();
+    int F=4;
+    int EC=0;
+    while((EC!=-1)&&(TC!=' ')&&(TC!='\n') )
+    {
+        EC=T->Tab[EC][valeur_char(TC)];
+        TC=getchar();
+        l++;
+
+    }
+    if(EC==-1) printf("erreur lexical\n");
+    else{if(EC!=F) printf("erreur lexical\n");
+    else if(l<30) printf("message correcte\n");}
+
+}
